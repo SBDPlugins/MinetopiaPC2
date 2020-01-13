@@ -3,7 +3,7 @@ version: '2.1'
 description: Computers voor jouw Minetopia server!
 author: SBDeveloper
 main: nl.SBDeveloper.MinetopiaPC.Main
-depend: ['MinetopiaPC']
+depend: ['MinetopiaSDB']
 commands:
   computer:
     description: Open de computer!
