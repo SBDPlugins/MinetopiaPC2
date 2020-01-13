@@ -5,10 +5,15 @@ import java.util.ArrayList;
 import org.bukkit.Location;
 
 public class Computer {
-
     private Location location;
     private ArrayList<User> users;
     private boolean inUse;
+
+    public Computer(Location location) {
+        this.location = location;
+        this.users = new ArrayList<>();
+        this.inUse = false;
+    }
 
     public Location getLocation() {
         return location;
@@ -16,14 +21,6 @@ public class Computer {
 
     public ArrayList<User> getUsers() {
         return users;
-    }
-
-    public boolean getInUse() {
-        return inUse;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public void addUser(User user) {
@@ -34,12 +31,11 @@ public class Computer {
         this.users.remove(user);
     }
 
-    public boolean containsUser(User user) {
-        return this.users.contains(user);
+    public boolean isInUse() {
+        return inUse;
     }
 
     public void setInUse(boolean inUse) {
         this.inUse = inUse;
     }
-
 }

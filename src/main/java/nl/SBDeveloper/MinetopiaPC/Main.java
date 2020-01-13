@@ -2,6 +2,7 @@ package nl.SBDeveloper.MinetopiaPC;
 
 import nl.SBDeveloper.MinetopiaPC.Commands.ComputerCommand;
 import nl.SBDeveloper.MinetopiaPC.Utils.SBYamlFile;
+import nl.SBDeveloper.MinetopiaPC.Utils.UpdateManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,6 +16,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        Bukkit.getLogger().info("[MinetopiaPC] Bezig met het laden van v" + getDescription().getVersion() + " van MinetopiaPC!");
         instance = this;
 
         if (Bukkit.getPluginManager().getPlugin("MinetopiaSDB") == null) {
@@ -27,8 +29,21 @@ public class Main extends JavaPlugin {
         data = new SBYamlFile(this, "data");
         messages = new SBYamlFile(this, "messages");
 
+        config.loadDefaults();
+        messages.loadDefaults();
+
         loadCommands();
         loadListeners();
+
+        new UpdateManager(this, 55092, UpdateManager.CheckType.SPIGOT).handleResponse((versionResponse, version) -> {
+            if (versionResponse == UpdateManager.VersionResponse.FOUND_NEW) {
+                Bukkit.getLogger().warning("[MinetopiaPC] Er is een update beschikbaar! Huidig: " + this.getDescription().getVersion() + " Nieuw: " + version);
+            } else if (versionResponse == UpdateManager.VersionResponse.LATEST) {
+                Bukkit.getLogger().info("[MinetopiaPC] Je hebt de laatste versie [" + this.getDescription().getVersion() + "]!");
+            } else if (versionResponse == UpdateManager.VersionResponse.UNAVAILABLE) {
+                Bukkit.getLogger().severe("[MinetopiaPC] Kon niet checken op een update.");
+            }
+        }).check();
     }
 
     @Override
