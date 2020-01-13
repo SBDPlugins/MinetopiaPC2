@@ -41,7 +41,7 @@ public class SBYamlFile {
     }
 
     public void loadDefaults() {
-        Bukkit.getLogger().info("[SBYamlManager] Copying default messages.yml to the folder!");
+        Bukkit.getLogger().info("[SBYamlManager] Copying default " + name + ".yml to the folder!");
         Reader defConfigStream1 = new InputStreamReader(this.pl.getResource(name + ".yml"), StandardCharsets.UTF_8);
         YamlConfiguration defConfig1 = YamlConfiguration.loadConfiguration(defConfigStream1);
         getFile().setDefaults(defConfig1);

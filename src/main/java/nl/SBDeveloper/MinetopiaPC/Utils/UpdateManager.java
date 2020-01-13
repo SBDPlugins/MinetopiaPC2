@@ -2,20 +2,17 @@ package nl.SBDeveloper.MinetopiaPC.Utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import javax.annotation.Nonnull;
-import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.function.BiConsumer;
 
 /**
@@ -25,7 +22,7 @@ import java.util.function.BiConsumer;
  */
 public class UpdateManager {
 
-    private static String SPIGOT_API = "https://api.spigotmc.org/legacy/update.php?resource=%d";
+    private static String SPIGOT_API = "http://api.spiget.org/v2/resources/%d/versions?size=1&sort=-releaseDate";
     private static String SBDPLUGINS_API = "http://updates.sbdplugins.nl:4000/api/resources/%d";
 
     private Plugin plugin;
@@ -66,7 +63,7 @@ public class UpdateManager {
             try {
                 HttpURLConnection con = null;
                 if (type == CheckType.SPIGOT) {
-                    con = (HttpsURLConnection) new URL(String.format(SPIGOT_API, this.resourceID)).openConnection();
+                    con = (HttpURLConnection) new URL(String.format(SPIGOT_API, this.resourceID)).openConnection();
                 } else if (type == CheckType.SBDPLUGINS) {
                     con = (HttpURLConnection) new URL(String.format(SBDPLUGINS_API, this.resourceID)).openConnection();
                 }
@@ -78,18 +75,21 @@ public class UpdateManager {
 
                 String version = null;
 
-                if (type == CheckType.SPIGOT) {
-                    version = new String(Files.readAllBytes(Paths.get(con.getURL().toURI())));
-                } else if (type == CheckType.SBDPLUGINS) {
-                    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                    String inputLine;
-                    StringBuilder response = new StringBuilder();
-                    while ((inputLine = in.readLine()) != null) {
-                        response.append(inputLine);
-                    }
-                    in.close();
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuilder response = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
 
-                    JSONParser parser = new JSONParser();
+                JSONParser parser = new JSONParser();
+
+                if (type == CheckType.SPIGOT) {
+                    JSONArray array = (JSONArray) parser.parse(response.toString());
+
+                    version = ((JSONObject) array.get(0)).get("name").toString();
+                } else if (type == CheckType.SBDPLUGINS) {
                     JSONObject object = (JSONObject) parser.parse(response.toString());
 
                     version = ((JSONObject) object.get("data")).get("version").toString();
@@ -101,7 +101,7 @@ public class UpdateManager {
 
                 String finalVersion = version;
                 Bukkit.getScheduler().runTask(this.plugin, () -> this.versionResponse.accept(latestVersion ? VersionResponse.LATEST : VersionResponse.FOUND_NEW, latestVersion ? this.currentVersion : finalVersion));
-            } catch (IOException | URISyntaxException | ParseException | NullPointerException e) {
+            } catch (IOException | ParseException | NullPointerException e) {
                 e.printStackTrace();
                 Bukkit.getScheduler().runTask(this.plugin, () -> this.versionResponse.accept(VersionResponse.UNAVAILABLE, null));
             }
