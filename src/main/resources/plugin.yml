@@ -1,0 +1,42 @@
+name: MinetopiaPC
+version: '2.1'
+description: Computers voor jouw Minetopia server!
+author: SBDeveloper
+main: nl.SBDeveloper.MinetopiaPC.Main
+depend: ['MinetopiaPC']
+commands:
+  computer:
+    description: Open de computer!
+    aliases: [mtpc, pc]
+    permission: Computer.command
+permissions:
+  Computer.command:
+    description: Permissie van het commando
+    default: op
+  Computer.weer:
+    description: Permissie van het weerbericht
+    default: op
+  Computer.fitheid:
+    description: Permissie van de fitheidtop
+    default: op
+  Computer.money:
+    description: Permissie van de moneytop
+    default: op
+  Computer.level:
+    description: Permissie van de leveltop
+    default: op
+  Computer.bankieren:
+    description: Permissie van het bankiermenu
+    default: op
+  Computer.afsluiten:
+    description: Permissie die ervoor zorgt dat je de computer kunt afsluiten
+    default: op
+  Computer.email.sturen:
+    description: Permissie om een email te sturen
+    default: op
+  Computer.email.lezen:
+    description: Permissie om je emails te lezen
+    default: op
+  Computer.clearmail:
+    description: Permissie om je inbox te clearen
+    default: op
