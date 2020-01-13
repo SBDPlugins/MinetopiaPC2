@@ -1,55 +1,65 @@
 Instellingen:
-  ComputerBlokMaterial: NETHER_BRICK_STAIRS
-  GUIItems:
-    EmailInbox:
-      Material: WRITABLE_BOOK
-      Slot: 9
-      Naam: "&eE-mail inbox bekijken"
-      Lores:
-        - "Bekijk jouw E-mail inbox!"
-    EmailSturen:
-      Material: BLAZE_POWDER
-      Slot: 10
-      Naam: &eE-mail sturen
-      Lores:
-        - "Stuur een mailtje!"
-    Weerbericht:
-      Material: LARGE_FERN
-      Slot: 11
-      Naam: "&eBuienradar"
-      Lores:
-        - "Zie het weerbericht!"
-    Nieuws:
-      Material: BOOK
-      Slot: 12
-      Naam: "&eHet laatste nieuws"
-      Lores:
-        - "Bekijk het laatste Minetopia nieuws!"
-    Bankieren:
-      Material: RED_SANDSTONE_STAIRS
-      Slot: 13
-      Naam: "&eBankieren"
-      Lores:
-        - "Kan dat ook al online dan?!"
-    Cameras:
-      Material: SKULL
-      Slot: 14
-      Naam: "&eCamera's"
-      Lores:
-        - "Bekijk de camera's van jouw plot (indien aanwezig)."
-    Prullenbak:
-      Material: DROPPER
-      Slot: 15
-      Naam: "&ePrullenbak"
-      Lores:
-        - "Gooi wat weg!"
-    Afsluiten:
-      Material: BARRIER
-      Slot: 17
-      Naam: "&eMijn computer"
-      Lores:
-        - "Welkom %SpelerNaam%!"
-        - "Rang: %Rang%"
-        - "Geld: %Geld%"
-        - "Level: %Level%"
-        - "Afsluiten? Druk op dit blok!"
+  Computer:
+    Material: NETHER_BRICK_STAIRS
+  GUI:
+    Naam: "&1Computer"
+    Items:
+      EmailInbox:
+        Material: WRITABLE_BOOK
+        Slot: 9
+        Naam: "&eE-mail inbox bekijken"
+        Lores:
+          - "Bekijk jouw E-mail inbox!"
+        Permissie: "MinetopiaPC.EmailBekijk"
+      EmailSturen:
+        Material: BLAZE_POWDER
+        Slot: 10
+        Naam: "&eE-mail sturen"
+        Lores:
+          - "Stuur een mailtje!"
+        Permissie: "MinetopiaPC.EmailStuur"
+      Weerbericht:
+        Material: LARGE_FERN
+        Slot: 11
+        Naam: "&eBuienradar"
+        Lores:
+          - "Zie het weerbericht!"
+        Permissie: "MinetopiaPC.Weer"
+      Nieuws:
+        Material: BOOK
+        Slot: 12
+        Naam: "&eHet laatste nieuws"
+        Lores:
+          - "Bekijk het laatste Minetopia nieuws!"
+        Permissie: "MinetopiaPC.Nieuws"
+      Bankieren:
+        Material: RED_SANDSTONE_STAIRS
+        Slot: 13
+        Naam: "&eBankieren"
+        Lores:
+          - "Kan dat ook al online dan?!"
+        Permissie: "MinetopiaPC.Bankieren"
+      Cameras:
+        Material: SKULL
+        Slot: 14
+        Naam: "&eCamera's"
+        Lores:
+          - "Bekijk de camera's van jouw plot (indien aanwezig)."
+        Permissie: "MinetopiaPC.Cameras"
+      Prullenbak:
+        Material: DROPPER
+        Slot: 15
+        Naam: "&ePrullenbak"
+        Lores:
+          - "Gooi wat weg!"
+        Permissie: "MinetopiaPC.Prullenbak"
+      Afsluiten:
+        Material: BARRIER
+        Slot: 17
+        Naam: "&eMijn computer"
+        Lores:
+          - "Welkom %SpelerNaam%!"
+          - "Rang: %Rang%"
+          - "Geld: %Geld%"
+          - "Level: %Level%"
+          - "Afsluiten? Druk op dit blok!"

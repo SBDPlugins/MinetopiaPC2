@@ -1,6 +1,9 @@
 package nl.SBDeveloper.MinetopiaPC;
 
 import nl.SBDeveloper.MinetopiaPC.Commands.ComputerCommand;
+import nl.SBDeveloper.MinetopiaPC.Listeners.GUIClickListener;
+import nl.SBDeveloper.MinetopiaPC.Listeners.InteractListener;
+import nl.SBDeveloper.MinetopiaPC.Listeners.JoinQuitListeners;
 import nl.SBDeveloper.MinetopiaPC.Utils.SBYamlFile;
 import nl.SBDeveloper.MinetopiaPC.Utils.UpdateManager;
 import org.bukkit.Bukkit;
@@ -56,7 +59,9 @@ public class Main extends JavaPlugin {
     }
 
     private void loadListeners() {
-
+        Bukkit.getPluginManager().registerEvents(new JoinQuitListeners(), this);
+        Bukkit.getPluginManager().registerEvents(new GUIClickListener(), this);
+        Bukkit.getPluginManager().registerEvents(new InteractListener(), this);
     }
 
     public static Main getInstance() {

@@ -1,6 +1,6 @@
 package nl.SBDeveloper.MinetopiaPC.Listeners;
 
-import nl.SBDeveloper.MinetopiaPC.Managers.DataManager;
+import nl.SBDeveloper.MinetopiaPC.API.MtPCAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,7 +12,7 @@ public class JoinQuitListeners implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
-        if (!DataManager.containsUser(p.getUniqueId())) {
+        if (!MtPCAPI.containsUser(p.getUniqueId())) {
             //New user! Ask user for his password.
             p.sendMessage("Je hebt nog geen computerwachtwoord ingesteld! Gebruik /computer setpassword <Wachtwoord> om computers te gebruiken.");
         }
