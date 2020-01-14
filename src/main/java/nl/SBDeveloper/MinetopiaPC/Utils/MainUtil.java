@@ -21,7 +21,7 @@ public class MainUtil {
         SDBPlayer sdb = SDBPlayer.createSDBPlayer(p.getUniqueId());
 
         ArrayList<String> lore = new ArrayList<String>();
-        for (String str : Main.getSConfig().getFile().getStringList("Instellingen.GUIItems.Afsluiten.Lores")) {
+        for (String str : Main.getSConfig().getFile().getStringList("Instellingen.GUI.Items.Afsluiten.Lores")) {
 
             StringBuffer buf = new StringBuffer();
             Matcher m = Pattern.compile("%(.*?)%").matcher(str);
