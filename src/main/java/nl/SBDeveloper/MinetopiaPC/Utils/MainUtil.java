@@ -34,7 +34,7 @@ public class MainUtil {
                         m.appendReplacement(buf, sdb.getRank());
                         break;
                     case "Geld":
-                        m.appendReplacement(buf, String.valueOf(sdb.getBalance()));
+                        m.appendReplacement(buf, String.format("%.2f", sdb.getBalance()));
                         break;
                     case "Level":
                         m.appendReplacement(buf, String.valueOf(sdb.getLevel()));
