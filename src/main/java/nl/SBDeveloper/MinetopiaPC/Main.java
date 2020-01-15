@@ -5,6 +5,7 @@ import nl.SBDeveloper.MinetopiaPC.Listeners.ChatListener;
 import nl.SBDeveloper.MinetopiaPC.Listeners.GUIClickListener;
 import nl.SBDeveloper.MinetopiaPC.Listeners.InteractListener;
 import nl.SBDeveloper.MinetopiaPC.Listeners.JoinQuitListeners;
+import nl.SBDeveloper.MinetopiaPC.Utils.SBSQLiteDB;
 import nl.SBDeveloper.MinetopiaPC.Utils.SBYamlFile;
 import nl.SBDeveloper.MinetopiaPC.Utils.UpdateManager;
 import org.bukkit.Bukkit;
@@ -15,7 +16,7 @@ public class Main extends JavaPlugin {
 
     private static Main instance;
     private static SBYamlFile config;
-    private static SBYamlFile data;
+    private static SBSQLiteDB data;
     private static SBYamlFile messages;
 
     @Override
@@ -30,11 +31,14 @@ public class Main extends JavaPlugin {
         }
 
         config = new SBYamlFile(this, "config");
-        data = new SBYamlFile(this, "data");
+        data = new SBSQLiteDB(this, "data");
         messages = new SBYamlFile(this, "messages");
 
         config.loadDefaults();
         messages.loadDefaults();
+
+        data.execute("CREATE TABLE IF NOT EXISTS computers (ID int NOT NULL, location VARCHAR(255) NOT NULL, inUse VARCHAR(255) NOT NULL, UNIQUE (ID))");
+        data.execute("CREATE TABLE IF NOT EXISTS computer_users (ID int NOT NULL, playerUUID varchar(255))");
 
         loadCommands();
         loadListeners();
@@ -53,6 +57,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         instance = null;
+        data.closeSource();
     }
 
     private void loadCommands() {
@@ -74,7 +79,7 @@ public class Main extends JavaPlugin {
         return config;
     }
 
-    public static SBYamlFile getData() {
+    public static SBSQLiteDB getData() {
         return data;
     }
 

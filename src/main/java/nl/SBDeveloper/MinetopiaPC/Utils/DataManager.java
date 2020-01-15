@@ -2,7 +2,6 @@ package nl.SBDeveloper.MinetopiaPC.Utils;
 
 import nl.SBDeveloper.MinetopiaPC.API.Computer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerInteractEvent;
 
 import javax.annotation.Nonnull;
 import java.util.UUID;

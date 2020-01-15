@@ -17,9 +17,8 @@
     </properties>
 
     <build>
-        <directory>target</directory> <!-- Build it one level up, because it is the one we care about -->
+        <directory>target</directory>
         <finalName>MinetopiaPC</finalName>
-        <!-- Define filtering for the inclusion of plugin.yml, so we can utilize the pom.xml version in it -->
         <resources>
             <resource>
                 <targetPath>.</targetPath>
@@ -82,6 +81,11 @@
             <version>1.28.1</version>
             <type>jar</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>3.4.2</version>
         </dependency>
     </dependencies>
 
