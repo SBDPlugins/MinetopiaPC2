@@ -1,11 +1,10 @@
 package nl.SBDeveloper.MinetopiaPC.Utils;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import javax.annotation.Nonnull;
 import java.io.BufferedReader;
@@ -86,16 +85,16 @@ public class UpdateManager {
                 }
                 in.close();
 
-                JSONParser parser = new JSONParser();
+                JsonParser parser = new JsonParser();
 
                 if (type == CheckType.SPIGOT) {
-                    JSONArray array = (JSONArray) parser.parse(response.toString());
+                    JsonArray array = parser.parse(response.toString()).getAsJsonArray();
 
-                    version = ((JSONObject) array.get(0)).get("name").toString();
+                    version = array.get(0).getAsJsonObject().get("name").getAsString();
                 } else if (type == CheckType.SBDPLUGINS) {
-                    JSONObject object = (JSONObject) parser.parse(response.toString());
+                    JsonObject object = (JsonObject) parser.parse(response.toString());
 
-                    version = ((JSONObject) object.get("data")).get("version").toString();
+                    version = object.get("data").getAsJsonObject().get("version").getAsString();
                 }
 
                 if (version == null) return;
@@ -104,7 +103,7 @@ public class UpdateManager {
 
                 String finalVersion = version;
                 Bukkit.getScheduler().runTask(this.plugin, () -> this.versionResponse.accept(latestVersion ? VersionResponse.LATEST : VersionResponse.FOUND_NEW, latestVersion ? this.currentVersion : finalVersion));
-            } catch (IOException | ParseException | NullPointerException e) {
+            } catch (IOException | NullPointerException e) {
                 e.printStackTrace();
                 Bukkit.getScheduler().runTask(this.plugin, () -> this.versionResponse.accept(VersionResponse.UNAVAILABLE, null));
             }
