@@ -12,6 +12,11 @@ import java.util.regex.Pattern;
 
 public class MainUtil {
     @Nonnull
+    public static void sendMessage(String path, @Nonnull Player p) {
+        p.sendMessage(formatColors(Main.getMessages().getFile().getString("Berichten." + path)));
+    }
+
+    @Nonnull
     public static String formatColors(String input) {
         return ChatColor.translateAlternateColorCodes('&', input);
     }

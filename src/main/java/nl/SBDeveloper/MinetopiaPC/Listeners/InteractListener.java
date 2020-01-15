@@ -4,7 +4,10 @@ import nl.SBDeveloper.MinetopiaPC.API.Computer;
 import nl.SBDeveloper.MinetopiaPC.API.MtPCAPI;
 import nl.SBDeveloper.MinetopiaPC.API.User;
 import nl.SBDeveloper.MinetopiaPC.Main;
+import nl.SBDeveloper.MinetopiaPC.Utils.DataManager;
+import nl.SBDeveloper.MinetopiaPC.Utils.MainUtil;
 import nl.SBDeveloper.MinetopiaPC.Utils.XMaterial;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,20 +30,11 @@ public class InteractListener implements Listener {
         if (e.getClickedBlock().getType() == pcMaterial) {
             //It's a computer
             if (!MtPCAPI.containsUser(e.getPlayer().getUniqueId())) {
-                //TODO SEND MESSAGE
+                MainUtil.sendMessage("Algemeen.WachtwoordNietIngesteld", e.getPlayer());
                 return;
             }
 
             User user = MtPCAPI.getUser(e.getPlayer().getUniqueId());
-
-            boolean passwordCorrect = false;
-
-            //TODO Password check
-
-            if (!passwordCorrect) {
-                //TODO SEND MESSAGE
-                return;
-            }
 
             if (!MtPCAPI.isComputer(e.getClickedBlock().getLocation())) {
                 Computer pc = MtPCAPI.createComputer(e.getClickedBlock().getLocation());
@@ -49,7 +43,21 @@ public class InteractListener implements Listener {
 
             Computer pc = MtPCAPI.getComputer(e.getClickedBlock().getLocation());
 
-            MtPCAPI.openComputer(pc, e.getPlayer());
+            if (!DataManager.isSecondClick(e.getPlayer())) {
+                //FIRST CLICK!!!
+                DataManager.addPlayerToPCMap(e.getPlayer(), pc);
+                MainUtil.sendMessage("Login.Invoer", e.getPlayer());
+                return;
+            }
+
+            if (!DataManager.checkPlayerPC(e.getPlayer(), pc)) {
+                //Incorrect password
+                MainUtil.sendMessage("Login.Fout", e.getPlayer());
+                return;
+            }
+
+            MainUtil.sendMessage("Login.Goed", e.getPlayer());
+            Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> MtPCAPI.openComputer(pc, e.getPlayer()), /* 2 sec */20 * 2);
         }
     }
 }

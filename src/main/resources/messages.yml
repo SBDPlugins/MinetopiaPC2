@@ -1,17 +1,12 @@
 Berichten:
   Algemeen:
-    GeenPermissie: "&cJe mag dit commando niet gebruiken!"
-    GeenGebruikPermissie: "&cJe mag deze functie op de computer niet gebruiken!"
-    AlleenNummers: "&cOeps! Je mag alleen nummers gebruiken!"
-    NietInStandaardLijst: "&cOeps! Je zit nog niet in de standaard lijst! Je wordt toegevoegd! Je code is 1234!"
-    ComputerAfgesloten: "&2De computer is afgesloten!"
-    CodeNaKlikkenPC:
-      Instellen: "&9Typ jouw persoonlijke code (Bijv. 111)! Typ STOP om te annuleren!"
-      NietIngesteld: "&9Oeps! Je hebt nog geen code ingesteld! Jouw code is nu: 1234"
-    CodeNaJoinen:
-      NogNietIngesteld: "&9Jouw computercode is ingesteld! Jouw code is: 1234"
-    CodeInstellen:
-      Gelukt: "&9Jouw code is aangepast naar: <NieuweCode>"
-    Inloggen:
-      Gestopt: "&9Inloggen gestopt!"
-      Fout: "&cO,o! Die code is fout..."
+    GeenPermissie: "&cJe hebt geen permissie om dit te doen!"
+    WachtwoordNietIngesteld: "&9Je hebt nog geen computer wachtwoord ingesteld! Stel er een in om ze te gebruiken."
+  Login:
+    Invoer: "&9Typ nu je wachtwoord. Typ STOP om te stoppen."
+    Invoer2: "&9Klik nu nogmaals op de computer om in te loggen."
+    Goed: "&9Gelukt! De computer start nu op. Een moment geduld..."
+    Fout: "&cDat wachtwoord is fout."
+    Gestopt: "&9Inloggen gestopt."
+  Gebruik:
+    Afgesloten: "&2De computer wordt afgesloten..."

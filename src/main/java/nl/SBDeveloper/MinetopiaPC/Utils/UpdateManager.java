@@ -19,6 +19,9 @@ import java.util.function.BiConsumer;
  * Update class for SBDevelopment
  * @author Stijn [SBDeveloper]
  * @since 12-01-2020
+ * @version 1.1
+ *
+ * © Stijn Bannink <stijnbannink23@gmail.com> - All rights reserved.
  */
 public class UpdateManager {
 

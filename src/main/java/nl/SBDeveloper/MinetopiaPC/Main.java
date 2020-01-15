@@ -1,6 +1,7 @@
 package nl.SBDeveloper.MinetopiaPC;
 
 import nl.SBDeveloper.MinetopiaPC.Commands.ComputerCommand;
+import nl.SBDeveloper.MinetopiaPC.Listeners.ChatListener;
 import nl.SBDeveloper.MinetopiaPC.Listeners.GUIClickListener;
 import nl.SBDeveloper.MinetopiaPC.Listeners.InteractListener;
 import nl.SBDeveloper.MinetopiaPC.Listeners.JoinQuitListeners;
@@ -62,6 +63,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new JoinQuitListeners(), this);
         Bukkit.getPluginManager().registerEvents(new GUIClickListener(), this);
         Bukkit.getPluginManager().registerEvents(new InteractListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
     }
 
     public static Main getInstance() {
