@@ -92,7 +92,7 @@ public class UpdateManager {
 
                     version = array.get(0).getAsJsonObject().get("name").getAsString();
                 } else if (type == CheckType.SBDPLUGINS) {
-                    JsonObject object = (JsonObject) parser.parse(response.toString());
+                    JsonObject object = parser.parse(response.toString()).getAsJsonObject();
 
                     version = object.get("data").getAsJsonObject().get("version").getAsString();
                 }
