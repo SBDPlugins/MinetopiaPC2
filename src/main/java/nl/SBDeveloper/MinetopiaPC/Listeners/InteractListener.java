@@ -13,6 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -20,7 +21,7 @@ import java.util.Optional;
 public class InteractListener implements Listener {
     @EventHandler
     public void onClickComputer(PlayerInteractEvent e) {
-        if (e.getClickedBlock() == null || e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+        if (e.getClickedBlock() == null || e.getAction() != Action.RIGHT_CLICK_BLOCK || e.getHand() == EquipmentSlot.OFF_HAND) return;
 
         Optional<XMaterial> pcmat = XMaterial.matchXMaterial(Objects.requireNonNull(Main.getSConfig().getFile().getString("Instellingen.Computer.Material")));
         if (!pcmat.isPresent()) return;

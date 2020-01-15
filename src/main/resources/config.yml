@@ -39,13 +39,6 @@ Instellingen:
         Lores:
           - "Kan dat ook al online dan?!"
         Permissie: "MinetopiaPC.Bankieren"
-      Cameras:
-        Material: SKULL
-        Slot: 14
-        Naam: "&eCamera's"
-        Lores:
-          - "Bekijk de camera's van jouw plot (indien aanwezig)."
-        Permissie: "MinetopiaPC.Cameras"
       Prullenbak:
         Material: DROPPER
         Slot: 15

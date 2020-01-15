@@ -18,6 +18,8 @@ public class ChatListener implements Listener {
 
             String password = e.getMessage();
 
+            if (password.equalsIgnoreCase("STOP")) DataManager.stopLogin(e.getPlayer());
+
             User user = MtPCAPI.getUser(e.getPlayer().getUniqueId());
 
             DataManager.addPlayerToPlayerMap(e.getPlayer(), password.equals(user.getPassword()));

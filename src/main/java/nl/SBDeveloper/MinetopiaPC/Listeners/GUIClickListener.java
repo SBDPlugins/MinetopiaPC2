@@ -22,30 +22,30 @@ public class GUIClickListener implements Listener {
             ItemStack clicked = e.getCurrentItem();
             Player p = (Player) e.getWhoClicked();
 
-            if (clicked.getType() == MtPCAPI.getGUIItem("Weerbericht")) {
-                if (!p.hasPermission(MtPCAPI.getGUIPermission("Weerbericht"))) {
+            if (clicked.getType() == MtPCAPI.getGUIItem("EmailInbox")) {
+                if (!p.hasPermission(MtPCAPI.getGUIPermission("EmailInbox"))) {
                     p.sendMessage(MainUtil.formatColors(Main.getMessages().getFile().getString("Berichten.Algemeen.GeenGebruikPermissie")));
                     return;
                 }
-                Bukkit.dispatchCommand(p, "weer");
-            } else if (clicked.getType() == MtPCAPI.getGUIItem("HoogsteFitheid")) {
-                if (!p.hasPermission(MtPCAPI.getGUIPermission("HoogsteFitheid"))) {
+                //TODO ADD email
+            } else if (clicked.getType() == MtPCAPI.getGUIItem("EmailSturen")) {
+                if (!p.hasPermission(MtPCAPI.getGUIPermission("EmailSturen"))) {
                     p.sendMessage(MainUtil.formatColors(Main.getMessages().getFile().getString("Berichten.Algemeen.GeenGebruikPermissie")));
                     return;
                 }
-                Bukkit.dispatchCommand(p, "stattop fitheid");
-            } else if (clicked.getType() == MtPCAPI.getGUIItem("MeesteGeld")) {
+                //TODO ADD email
+            } else if (clicked.getType() == MtPCAPI.getGUIItem("Weerbericht")) {
                 if (!p.hasPermission(MtPCAPI.getGUIPermission("MeesteGeld"))) {
                     p.sendMessage(MainUtil.formatColors(Main.getMessages().getFile().getString("Berichten.Algemeen.GeenGebruikPermissie")));
                     return;
                 }
-                Bukkit.dispatchCommand(p, "stattop money");
-            } else if (clicked.getType() == MtPCAPI.getGUIItem("HoogsteLevel")) {
-                if (!p.hasPermission(MtPCAPI.getGUIPermission("HoogsteLevel"))) {
+                Bukkit.dispatchCommand(p, "weer");
+            } else if (clicked.getType() == MtPCAPI.getGUIItem("Nieuws")) {
+                if (!p.hasPermission(MtPCAPI.getGUIPermission("Nieuws"))) {
                     p.sendMessage(MainUtil.formatColors(Main.getMessages().getFile().getString("Berichten.Algemeen.GeenGebruikPermissie")));
                     return;
                 }
-                Bukkit.dispatchCommand(p, "stattop level");
+                //TODO ADD nieuws
             } else if (clicked.getType() == MtPCAPI.getGUIItem("Bankieren")) {
                 if (!p.hasPermission(MtPCAPI.getGUIPermission("Bankieren"))) {
                     p.sendMessage(MainUtil.formatColors(Main.getMessages().getFile().getString("Berichten.Algemeen.GeenGebruikPermissie")));

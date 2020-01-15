@@ -32,6 +32,10 @@ public class DataManager {
         return computerPasswordMap.containsKey(p.getUniqueId()) && playerPasswordMap.containsKey(p.getUniqueId());
     }
 
+    public static void stopLogin(@Nonnull Player p) {
+        computerPasswordMap.remove(p.getUniqueId());
+    }
+
     public static boolean checkPlayerPC(@Nonnull Player p, Computer pc) {
         if (!computerPasswordMap.containsKey(p.getUniqueId()) || !playerPasswordMap.containsKey(p.getUniqueId())) return false;
 
