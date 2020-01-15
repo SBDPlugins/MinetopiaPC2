@@ -26,7 +26,7 @@ public class MainUtil {
         SDBPlayer sdb = SDBPlayer.createSDBPlayer(p.getUniqueId());
 
         ArrayList<String> lore = new ArrayList<String>();
-        for (String str : Main.getSConfig().getFile().getStringList("Instellingen.GUIItems.Afsluiten.Lores")) {
+        for (String str : Main.getSConfig().getFile().getStringList("Instellingen.GUI.Items.Afsluiten.Lores")) {
 
             StringBuffer buf = new StringBuffer();
             Matcher m = Pattern.compile("%(.*?)%").matcher(str);
@@ -39,7 +39,7 @@ public class MainUtil {
                         m.appendReplacement(buf, sdb.getRank());
                         break;
                     case "Geld":
-                        m.appendReplacement(buf, String.valueOf(sdb.getBalance()));
+                        m.appendReplacement(buf, String.format("%.2f", sdb.getBalance()));
                         break;
                     case "Level":
                         m.appendReplacement(buf, String.valueOf(sdb.getLevel()));
