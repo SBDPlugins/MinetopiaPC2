@@ -25,7 +25,7 @@ public class MainUtil {
     public static ArrayList<String> getCloseLores(@Nonnull Player p) {
         SDBPlayer sdb = SDBPlayer.createSDBPlayer(p.getUniqueId());
 
-        ArrayList<String> lore = new ArrayList<String>();
+        ArrayList<String> lore = new ArrayList<>();
         for (String str : Main.getSConfig().getFile().getStringList("Instellingen.GUI.Items.Afsluiten.Lores")) {
 
             StringBuffer buf = new StringBuffer();
